@@ -116,9 +116,9 @@
     /* 8. Balance only after sign-off, in the last "How it works" step */
     var last = document.querySelector("#how .steps li:last-child p");
     if (last && !document.querySelector(".bx-signoff")) {
-      var so = el("p", "bx-signoff", "We never ask for the balance until we have been round every window and door with you and you are happy with the work.");
-      so.style.marginTop = "8px";
-      last.insertAdjacentElement("afterend", so);
+      var so = el("span", "bx-signoff", "We never ask for the balance until we have been round every window and door with you and you are happy with the work.");
+      so.style.cssText = "display:block;margin-top:8px";
+      last.appendChild(so);
     }
     /* 9. Three easy ways to pay: a band straight after the price guide, plus a line under the price */
     var price = $("#price");
