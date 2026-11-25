@@ -40,6 +40,17 @@
     ".bx-ways span{display:block;margin-top:8px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.8)}",
     ".bx-paynote{margin-top:16px;font-size:15px;font-weight:600;color:var(--ink,#090c2d)}",
     "@media (max-width:760px){.bx-ways{grid-template-columns:1fr}}",
+    ".bx-sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:14px;margin-top:30px}",
+    ".bx-sw figure{margin:0}.bx-sw i{display:block;aspect-ratio:1;border-radius:12px;border:1px solid rgba(0,0,0,.12);transition:transform .25s}",
+    ".bx-sw figure:hover i{transform:translateY(-2px)}",
+    ".bx-sw figcaption{margin-top:8px;font-size:14px;font-weight:600;color:var(--ink,#090c2d)}",
+    ".bx-sw small{display:block;font-weight:400;color:var(--muted,#666);font-size:12px}",
+    ".bx-styles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}",
+    ".bx-styles div{background:#fff;border:1px solid var(--line,#e5e3de);border-radius:14px;padding:20px}",
+    ".bx-styles b{display:block;font:600 18px/1.2 'Inter Tight',Inter,sans-serif;color:var(--ink,#090c2d)}",
+    ".bx-styles span{display:block;margin-top:6px;font-size:14px;line-height:1.5;color:var(--muted,#555)}",
+    ".bx-cnote{margin-top:18px;font-size:13px;color:var(--muted,#666)}",
+    "@media (max-width:760px){.bx-styles{grid-template-columns:1fr}}",
     "@media (max-width:760px){.bx-jobs .bx-grid{grid-template-columns:1fr 1fr}.bx-save{grid-template-columns:1fr}.bx-track{gap:44px}.bx-track img{height:40px}}"
   ].join("");
   document.head.appendChild(css);
@@ -141,6 +152,37 @@
       price.insertAdjacentElement("afterend", pay);
       var ph = $("#price .band-head");
       if (ph && !$(".bx-paynote")) ph.insertAdjacentElement("afterend", el("p", "bx-paynote", "3 easy ways to pay: bank transfer, credit or debit card, or finance. <a href=\"#pay\">See how</a>"));
+    }
+    /* 10. Bifold card: real Eurocell Aspect and Syncro figures */
+    var bif = document.querySelector('#range .card[data-pick="bifold"] .card-in p');
+    if (bif && !bif.dataset.bx) {
+      bif.dataset.bx = "1";
+      bif.textContent = "Eurocell Aspect bifolds up to 6 metres wide, opening in or out, with a low threshold for easy access. Sliding patio doors up to 3.5 metres.";
+    }
+    /* 11. Colours and frame styles, straight after the product range */
+    var range = $("#range");
+    if (range && !$(".bx-colours")) {
+      var C = [["White","#f4f4f1",""],["Cream White","#ece4cf","Woodgrain"],["Agate Grey","#b9b9b1",""],["Pebble Grey","#a9a59b",""],["Moondust Grey","#8d9196",""],["Slate Grey","#5f656b","Smooth or woodgrain"],["Anthracite Grey","#3a3f44","Smooth or woodgrain"],["Black Ash","#2b2622","Woodgrain"],["Chartwell Green","#9fb39b",""],["Irish Oak","#7a4e2c","Woodgrain"],["Golden Oak","#a9682f","Woodgrain"],["Rosewood","#5b2b22","Woodgrain"]];
+      var sw = C.map(function (c) { return '<figure><i style="background:' + c[1] + '"></i><figcaption>' + c[0] + (c[2] ? '<small>' + c[2] + '</small>' : '') + '</figcaption></figure>'; }).join("");
+      var col = el("section", "band bx-colours");
+      col.id = "colours";
+      col.setAttribute("aria-labelledby", "h-colours");
+      col.style.background = "var(--paper)";
+      col.innerHTML = '<div class="wrap"><div class="band-head"><div><p class="kicker">Colours and styles</p><h2 id="h-colours">Your colour, inside and out</h2></div>' +
+        '<p class="lead">Every frame is white inside as standard, or you can have the colour on both sides. These are the most popular, and there are over 30 more made to order.</p></div>' +
+        '<div class="bx-sw">' + sw + '</div>' +
+        '<div class="bx-styles"><div><b>Chamfered</b><span>A clean, straight edge. The modern favourite.</span></div><div><b>Ovolo</b><span>A softer, sculpted edge that suits older and period homes.</span></div><div><b>Flush sash</b><span>Sits flat in the frame like traditional timber, without the painting or rot.</span></div></div>' +
+        '<p class="bx-cnote">Colours on screen are a guide. Your surveyor brings real samples to your home.</p></div>';
+      range.insertAdjacentElement("afterend", col);
+    }
+    /* 12. FAQs from the Eurocell care guide */
+    var faq = $(".faq");
+    if (faq && !$(".bx-faq")) {
+      var q = [
+        ["How do I look after my new windows and doors?", "Wipe the frames with warm soapy water every three months, or every month if you live near a busy road or the coast. Keep the drainage slots clear and put a drop of light oil on the hinges and locks once a year. Never use bleach, solvents, scourers or a pressure washer. We leave you a care guide when we finish."],
+        ["Why is there condensation on my glass?", "If it wipes off the inside or outside, it is normal moisture from cooking, showers and drying clothes, and airing the room helps. If it is between the two panes, the sealed unit has failed and is covered by your five year glass guarantee."]
+      ];
+      q.forEach(function (x) { var d = el("details", "bx-faq", "<summary>" + x[0] + "</summary><p>" + x[1] + "</p>"); faq.appendChild(d); });
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run); else run();
