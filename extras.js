@@ -104,6 +104,13 @@
       var h = (window.SITE && SITE.hours) || "Monday to Friday, 9am to 5pm";
       wa.insertAdjacentElement("afterend", el("p", "bx-reply", "We reply the same working day, " + h + "."));
     }
+    /* 8. Balance only after sign-off, in the last "How it works" step */
+    var last = document.querySelector("#how .steps li:last-child p");
+    if (last && !document.querySelector(".bx-signoff")) {
+      var so = el("p", "bx-signoff", "We never ask for the balance until we have been round every window and door with you and you are happy with the work.");
+      so.style.marginTop = "8px";
+      last.insertAdjacentElement("afterend", so);
+    }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run); else run();
 })();
