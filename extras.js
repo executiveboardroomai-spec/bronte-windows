@@ -40,7 +40,7 @@
     ".bx-ways span{display:block;margin-top:8px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.8)}",
     ".bx-paynote{margin-top:16px;font-size:15px;font-weight:600;color:var(--ink,#090c2d)}",
     "@media (max-width:760px){.bx-ways{grid-template-columns:1fr}}",
-    "@media (min-width:1025px){.site-head .nav a[href*='recent-jobs']{display:none}}",
+    "@media (min-width:1025px){.site-head .nav a[href*='recent-jobs']{display:none}.site-head .nav{gap:14px}.site-head .nav a{font-size:16px}}",
     ".bx-sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:14px;margin-top:30px}",
     ".bx-sw figure{margin:0}.bx-sw i{display:block;aspect-ratio:1;border-radius:12px;border:1px solid rgba(0,0,0,.12);transition:transform .25s}",
     ".bx-sw figure:hover i{transform:translateY(-2px)}",
