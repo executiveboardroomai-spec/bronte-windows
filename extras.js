@@ -29,6 +29,7 @@
     ".bx-save span{display:block;margin-top:6px;font-size:14px;color:rgba(255,255,255,.85)}",
     ".bx-note{margin-top:14px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.75);max-width:62ch}",
     ".bx-tips{margin-top:12px;font-size:14px;line-height:1.5;opacity:.85;max-width:52ch}",
+    ".site-head:has(.nav a[href=\"recent-jobs.html\"]) .nav-jobs{display:none}.nav a{white-space:nowrap}",
     ".bx-reply{margin-top:10px;font-size:14px;color:var(--muted,#666)}",
     "@media (max-width:760px){.bx-jobs .bx-grid{grid-template-columns:1fr 1fr}.bx-save{grid-template-columns:1fr}.bx-track{gap:44px}.bx-track img{height:40px}}"
   ].join("");
