@@ -31,6 +31,15 @@
     ".bx-tips{margin-top:12px;font-size:14px;line-height:1.5;opacity:.85;max-width:52ch}",
     ".site-head:has(.nav a[href=\"recent-jobs.html\"]) .nav-jobs{display:none}.nav a{white-space:nowrap}",
     ".bx-reply{margin-top:10px;font-size:14px;color:var(--muted,#666)}",
+    ".bx-pay{background:#090c2d;color:#fff}.bx-pay .kicker{color:#2ba3e0}.bx-pay h2{color:#fff}.bx-pay .lead{color:rgba(255,255,255,.82)}",
+    ".bx-ways{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}",
+    ".bx-ways div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:28px 26px;transition:transform .25s,border-color .25s}",
+    ".bx-ways div:hover{transform:translateY(-2px);border-color:#2ba3e0}",
+    ".bx-ways svg{width:34px;height:34px;stroke:#2ba3e0;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}",
+    ".bx-ways b{display:block;margin-top:16px;font:600 22px/1.2 'Inter Tight',Inter,sans-serif}",
+    ".bx-ways span{display:block;margin-top:8px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.8)}",
+    ".bx-paynote{margin-top:16px;font-size:15px;font-weight:600;color:var(--ink,#090c2d)}",
+    "@media (max-width:760px){.bx-ways{grid-template-columns:1fr}}",
     "@media (max-width:760px){.bx-jobs .bx-grid{grid-template-columns:1fr 1fr}.bx-save{grid-template-columns:1fr}.bx-track{gap:44px}.bx-track img{height:40px}}"
   ].join("");
   document.head.appendChild(css);
@@ -110,6 +119,28 @@
       var so = el("p", "bx-signoff", "We never ask for the balance until we have been round every window and door with you and you are happy with the work.");
       so.style.marginTop = "8px";
       last.insertAdjacentElement("afterend", so);
+    }
+    /* 9. Three easy ways to pay: a band straight after the price guide, plus a line under the price */
+    var price = $("#price");
+    if (price && !$(".bx-pay")) {
+      var ic = {
+        bank: '<svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>',
+        card: '<svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg>',
+        fin: '<svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M3.5 9h17M8 2.5v4M16 2.5v4M8 13h3M8 16.5h6"/></svg>'
+      };
+      var pay = el("section", "band bx-pay");
+      pay.id = "pay";
+      pay.setAttribute("aria-labelledby", "h-pay");
+      pay.innerHTML = '<div class="wrap"><div class="band-head"><div><p class="kicker">Paying for your windows and doors</p><h2 id="h-pay">3 easy ways to pay</h2></div>' +
+        '<p class="lead">Pay a 25% deposit when you go ahead, and the rest once we have been round every window and door with you and you are happy. Pay whichever way suits you.</p></div>' +
+        '<div class="bx-ways">' +
+        '<div>' + ic.bank + '<b>Bank transfer</b><span>Pay straight from your bank account, with no fees and nothing to sign up to.</span></div>' +
+        '<div>' + ic.card + '<b>Credit or debit card</b><span>Pay securely online with the link on your quote, or by card on the day.</span></div>' +
+        '<div>' + ic.fin + '<b>Finance</b><span>Spread the cost with monthly payments. Subject to status, and we can talk you through the options.</span></div>' +
+        '</div></div>';
+      price.insertAdjacentElement("afterend", pay);
+      var ph = $("#price .band-head");
+      if (ph && !$(".bx-paynote")) ph.insertAdjacentElement("afterend", el("p", "bx-paynote", "3 easy ways to pay: bank transfer, credit or debit card, or finance. <a href=\"#pay\">See how</a>"));
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run); else run();
